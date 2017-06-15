@@ -41,3 +41,57 @@ void printList(struct node* head)
     }
     cout<<endl;
 }
+
+/*
+ * Stack of linked list node
+ * Uses stack DS to maintain a stack!
+ */
+class Stack {
+    private:
+        struct node* head;
+        int length;
+    public:
+        Stack(int *arr, int n)
+        {
+            this->head = NULL;
+            this->length = 0;
+            int i =0;
+            while(n--)
+            {
+                struct node* newNode = getANode(*(arr+i++));
+                newNode->next = this->head;
+                this->head = newNode;
+            }
+        }
+        int pop()
+        {
+            struct node* ptr = this->head;
+            this->head = this->head->next;
+            this->length--;
+            return ptr;
+        }
+        void push(int data)
+        {
+            struct node* newNode = getANode(data);
+            newNode->next = this->head;
+            this->length++;
+            this->head = newNode;
+        }
+        int getLength()
+        {
+            return this->length;
+        }
+        
+};
+
+
+int getLength(struct node* head)
+{
+    int length = 0;
+    while(head)
+    {
+        length++;
+        head = head->next;
+    }
+    return length;
+}
