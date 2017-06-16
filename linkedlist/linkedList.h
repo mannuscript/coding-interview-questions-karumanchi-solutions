@@ -63,7 +63,11 @@ class Stack {
                 this->head = newNode;
             }
         }
-        int pop()
+        Stack()
+        {
+            this->length = 0;
+        }
+        struct node* pop()
         {
             struct node* ptr = this->head;
             this->head = this->head->next;
