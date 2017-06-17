@@ -3,30 +3,6 @@
 #include"linkedList.h"
 using namespace std;
 
-/*
- * Time complexity: O(n)
- * Space Complexity Null
- */
-struct node* reverseLinkedList(struct node* head)
-{
-    if(!head)
-        return head;
-
-    struct node * forwardPtr = head->next;
-    struct node * ptr = head;
-    struct node * prePtr = NULL;
-    
-    while(ptr)
-    {
-        ptr->next = prePtr;
-        prePtr = ptr;
-        ptr = forwardPtr;
-        if(forwardPtr)
-            forwardPtr = forwardPtr->next;
-    }
-    return prePtr;
-}
-
 struct node* reverseUsingRecurrsionHelper(struct node** newHead, struct node* ptr)
 {
     if(!ptr->next)

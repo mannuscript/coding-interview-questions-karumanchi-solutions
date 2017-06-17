@@ -1,4 +1,5 @@
 #include<iostream>
+#include<unordered_map>
 
 using namespace std;
 
@@ -42,9 +43,58 @@ void printList(struct node* head)
     cout<<endl;
 }
 
+int getLength(struct node* head)
+{
+    int length = 0;
+    while(head)
+    {
+        length++;
+        head = head->next;
+    }
+    return length;
+}
+
+//Returns one node previos to middle node
+struct node* getMiddleNode(struct node* head)
+{
+    struct node* fastPtr = head->next;
+    struct node* slowPtr = head;
+
+    while(fastPtr && fastPtr->next)
+    {
+        fastPtr = fastPtr->next->next;
+        slowPtr = slowPtr->next;
+    }
+    return slowPtr;
+}
+
+/*
+ * Time complexity: O(n)
+ * Space Complexity Null
+ */
+struct node* reverseLinkedList(struct node* head)
+{
+    if(!head)
+        return head;
+
+    struct node * forwardPtr = head->next;
+    struct node * ptr = head;
+    struct node * prePtr = NULL;
+    
+    while(ptr)
+    {
+        ptr->next = prePtr;
+        prePtr = ptr;
+        ptr = forwardPtr;
+        if(forwardPtr)
+            forwardPtr = forwardPtr->next;
+    }
+    return prePtr;
+}
+
 /*
  * Stack of linked list node
- * Uses stack DS to maintain a stack!
+ * Uses linked list to maintain a stack!
  */
 class Stack {
     private:
@@ -54,7 +104,7 @@ class Stack {
         Stack(int *arr, int n)
         {
             this->head = NULL;
-            this->length = 0;
+            this->length = n;
             int i =0;
             while(n--)
             {
@@ -66,6 +116,7 @@ class Stack {
         Stack()
         {
             this->length = 0;
+            this->head = NULL;
         }
         struct node* pop()
         {
@@ -85,17 +136,44 @@ class Stack {
         {
             return this->length;
         }
+        void printStack()
+        {
+            struct node* ptr = this->head;
+            while(ptr){
+                cout<<ptr->data<<" ";
+                ptr = ptr->next;
+            }
+            cout<<endl;
+        }
         
 };
 
+class HashedList {
+    private: 
+        struct node* head;
+        unordered_map<int, struct node*> umap;
+    
+    public:
+        void printMap()
+        {
+            for(auto it = this->umap.begin(); it != this->umap.end(); it++)
+                cout<<it->first<<" ";
+            cout<<endl;
+        }
 
-int getLength(struct node* head)
-{
-    int length = 0;
-    while(head)
-    {
-        length++;
-        head = head->next;
-    }
-    return length;
-}
+        HashedList(int *arr, int n)
+        {
+            this->head = getALinkedList(arr, n);
+            struct node* ptr = head;
+            while(ptr)
+            {
+                this->umap[ptr->data] = ptr;
+                ptr = ptr->next;
+            }
+        }
+
+        struct node* findNode(int n)
+        {
+            return this->umap[n];
+        }
+};
