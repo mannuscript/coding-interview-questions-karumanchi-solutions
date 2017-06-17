@@ -50,7 +50,7 @@ bool isPalindromeOptimized(struct node* head)
     bool palindromeFlag = true;
 
     middleNode->next = reverseLinkedList(middleNode->next);
-    printList(head);
+    //printList(head);
 
     temp= middleNode->next;
 
@@ -66,7 +66,7 @@ bool isPalindromeOptimized(struct node* head)
     }
 
     middleNode->next = reverseLinkedList(middleNode->next);
-    printList(headPtr);
+    //printList(headPtr);
     return palindromeFlag;
 }
 

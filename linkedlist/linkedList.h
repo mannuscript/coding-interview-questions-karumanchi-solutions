@@ -33,13 +33,19 @@ struct node* getALinkedList(int *arr, int len)
     return head;
 }
 
+
+
 void printList(struct node* head)
 {
- while(head)
+    if(!head)
+        return;
+        
+    struct node* ptr = head;
+    do
     {
         cout<<head->data<<" ";
         head = head->next;
-    }
+    } while(head && head != ptr);
     cout<<endl;
 }
 
@@ -66,6 +72,13 @@ struct node* getMiddleNode(struct node* head)
         slowPtr = slowPtr->next;
     }
     return slowPtr;
+}
+
+struct node* getTail(struct node* head)
+{
+    while(head->next)
+        head = head->next;
+    return head;
 }
 
 /*
