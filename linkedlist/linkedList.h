@@ -39,7 +39,7 @@ void printList(struct node* head)
 {
     if(!head)
         return;
-        
+
     struct node* ptr = head;
     do
     {
@@ -161,6 +161,10 @@ class Stack {
         
 };
 
+/*
+ * This DS maintaines a list and a hash map of int,node
+ * Suitable for implementation of LRU and so on!
+ */
 class HashedList {
     private: 
         struct node* head;
