@@ -33,8 +33,6 @@ struct node* getALinkedList(int *arr, int len)
     return head;
 }
 
-
-
 void printList(struct node* head)
 {
     if(!head)
