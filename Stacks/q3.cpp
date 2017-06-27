@@ -1,20 +1,8 @@
 #include<iostream>
 #include"Stacks.h"
 #include<stdio.h>
-#include<Stack>
+#include<stack>
 using namespace std;
-
-int performOperation(char oprtr, int operand1, int operand2)
-{
-    switch(oprtr) {
-        case '+': return operand1 + operand2;
-        case '-': return operand1 - operand2;
-        case '/': return operand1 / operand2;
-        case '*': return operand1 * operand2;
-        default: perror("\nOperator not supported!\n");
-                    return 0;
-    }
-}
 
 bool isOprtr(char oprtr)
 {

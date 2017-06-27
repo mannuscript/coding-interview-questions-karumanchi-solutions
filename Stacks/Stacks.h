@@ -215,3 +215,49 @@ class LLStack_min_max_optimized: public LLStack
             cout<<endl;
         }
 };
+
+
+
+bool isHighPrecedence(char op1, char op2)
+{
+    if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-'))
+        return true;
+    else
+        return false;
+}
+
+bool isClosingBracket(char c) {
+    if(c == ')' || c == ']' || c =='}')
+        return true;
+    return false;
+}
+
+bool isOpeningBracket(char c) {
+    if(c == '(' || c == '[' || c =='{')
+        return true;
+    return false;
+}
+
+
+bool isOprtr(char oprtr)
+{
+    char oprtrList[] = "+-()*/[]{}";
+    if(strchr(oprtrList, oprtr)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+int performOperation(char oprtr, int operand1, int operand2)
+{
+    switch(oprtr) {
+        case '+': return operand1 + operand2;
+        case '-': return operand1 - operand2;
+        case '/': return operand1 / operand2;
+        case '*': return operand1 * operand2;
+        default: perror("\nOperator not supported!\n");
+                    return 0;
+    }
+}
