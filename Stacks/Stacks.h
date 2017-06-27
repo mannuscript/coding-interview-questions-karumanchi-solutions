@@ -1,5 +1,6 @@
 #include<iostream>
 #include<climits>
+#include <stack>
 #include"../linkedlist/linkedList.h"
 
 using namespace std;
@@ -260,4 +261,14 @@ int performOperation(char oprtr, int operand1, int operand2)
         default: perror("\nOperator not supported!\n");
                     return 0;
     }
+}
+
+
+void printSTLStack(stack <char> st)
+{
+    while(!st.empty()) {
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+    cout<<endl;
 }
