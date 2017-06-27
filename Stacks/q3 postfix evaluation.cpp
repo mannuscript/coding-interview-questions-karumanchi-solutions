@@ -4,7 +4,7 @@
 #include<stack>
 using namespace std;
 
-bool isOprtr(char oprtr)
+bool isNonBracketOprtr(char oprtr)
 {
     char oprtrList[] = "+-*/";
     if(strchr(oprtrList, oprtr)) {
@@ -21,7 +21,7 @@ int evalPostfix(char *str)
     stack <int> st;
     int i = 0;
     while(*(str+i)) {
-        if(isOprtr(*(str+i))) {
+        if(isNonBracketOprtr(*(str+i))) {
             //Get top two oprands
             int a = st.top();
             st.pop();

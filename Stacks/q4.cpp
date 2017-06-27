@@ -12,8 +12,14 @@ int evalInfixUsingStack(char *str)
     while(*(str+i))
     {
         char current = *(str+i);
-        cout<<"processing:"<<current;
+        //cout<<"processing:"<<current;
         if(isOprtr(current)) {
+
+            if(isOpeningBracket(current)) {
+                operatorsStack.push(current);
+                i++;
+                continue;
+            }
 
             while(!operatorsStack.empty() && (isHighPrecedence(operatorsStack.top(), current) || 
                 (isClosingBracket(current) && !isOpeningBracket(operatorsStack.top())))) {
@@ -31,14 +37,12 @@ int evalInfixUsingStack(char *str)
                 );
             }
 
-
-            if(isOpeningBracket(operandsStack.top()))
+            if(isClosingBracket(current) && isOpeningBracket(operandsStack.top())) {
+                //Remove '(' too
                 operandsStack.pop();
-            if(!isClosingBracket(current)) {
-                cout<<"pushing in oprnds:  "<<current<<endl;
+            } else {
                 operandsStack.push(current);
             }
-
 
         } else {
             cout<<"pushing in operators:  "<<current - '0'<<endl;
@@ -46,6 +50,10 @@ int evalInfixUsingStack(char *str)
         }
         i++;
     }
+    cout<<endl<<"#######################";
+    operandsStack.pop();
+    
+    cout<<"#######################"<<endl;
     //cout<<endl<<endl<<operatorsStack.size()<<"------"<<operandsStack.size()<<endl;
     // while(!operatorsStack.empty()) {
     //     int operand1 = operandsStack.top();
@@ -60,14 +68,14 @@ int evalInfixUsingStack(char *str)
     //         performOperation(oprtrToEval, operand2, operand1)
     //     );
     // }
-    int data = operandsStack.top();
+   // int data = operandsStack.top();
     //operandsStack.pop();
-    return data;
+    //return data;
 }
 
 int main(void)
 {
-    char str[] = "1+2*6";
+    char str[] = "1*2+6";
     cout<<"Result:"<<evalInfixUsingStack(str)<<endl;
     return 0;
 }

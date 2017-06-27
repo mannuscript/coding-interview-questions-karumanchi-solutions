@@ -16,9 +16,9 @@ char* infixToPostFix(char *infixNotation)
         //cout<<"processing:"<<current<<endl;
         if(isOprtr(current)) {
             if(isOpeningBracket(current)) {
-                *(postfixNotation+ptr) = st.top();
-                ptr++;
-                st.pop();
+                st.push(current);
+                i++;
+                continue;
             }
             //Check if Operator of low precedence (than the one at stack's top) 
             //appeared. pop stack until low/equal precedence operator appears
@@ -28,6 +28,8 @@ char* infixToPostFix(char *infixNotation)
                 ptr++;
                 st.pop();
             }
+            // if(!st.empty())
+            //     cout<<current<<" "<<st.top()<<endl;
             if(isClosingBracket(current) && isOpeningBracket(st.top())) {
                 //Remove '(' too
                 st.pop();
@@ -53,7 +55,7 @@ char* infixToPostFix(char *infixNotation)
 
 int main(void)
 {
-    char infixStr[] = "A+B*C+D";
+    char infixStr[] = "(A+B)*C+D";
     cout<<infixToPostFix(infixStr)<<endl<<"######################";
     return 0;
 }
