@@ -217,6 +217,53 @@ class LLStack_min_max_optimized: public LLStack
         }
 };
 
+class Q_using_stacks {
+    private: 
+        LLStack enqueueStack;
+        LLStack dequeueStack;
+        int length;
+        void refillDequeueStack(void)
+        {
+            while(this->enqueueStack.getLength()) {
+                this->dequeueStack.push(this->enqueueStack.pop());
+            }
+        }
+
+    public:
+        Q_using_stacks(){}
+        Q_using_stacks(int arr[], int len) 
+        {
+            int i = 0;
+            while(i < len) {
+                this->enqueue(*(arr+i));
+                i++;
+            }
+        }
+        void enqueue(int data) 
+        {
+            this->enqueueStack.push(data);
+            this->length++;
+        }
+        int dequeue(void)
+        {
+            //Check if queue is non empty
+            if(!this->length) {
+                perror("Error queue is empty!");
+                return NULL;
+            }
+            //Check if dequeue stack is empty
+            if(!dequeueStack.getLength()) {
+                this->refillDequeueStack();
+            }
+            this->length--;
+            return this->dequeueStack.pop();
+        }
+        int getLength() 
+        {
+            return this->length;
+        }
+};
+
 
 
 bool isHighPrecedence(char op1, char op2)
