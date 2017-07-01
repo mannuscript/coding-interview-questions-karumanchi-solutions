@@ -1,0 +1,1 @@
+../linkedlist/q17-23.cpp
