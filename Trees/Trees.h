@@ -18,6 +18,19 @@ struct binaryTreeNode* getBinaryTreeNode(int data)
     return newNode;
 }
 
+int getHeightOfTree(struct binaryTreeNode* root)
+{
+    if(!root)
+        return 0;
+    
+    int leftHeight = getHeightOfTree(root->left);
+    int rightHeight = getHeightOfTree(root->right);
+
+    if(leftHeight > rightHeight)
+        return (leftHeight + 1);
+    else return (rightHeight + 1);
+}
+
 void inorder_print(struct binaryTreeNode* root)
 {
 
@@ -29,12 +42,15 @@ void inorder_print(struct binaryTreeNode* root)
 }
 
 struct binaryTreeNode* getASampleTree() {
-    struct binaryTreeNode *root1 = getBinaryTreeNode(4);
-    root1->left = getBinaryTreeNode(5);
-    root1->left->left = getBinaryTreeNode(50);
-    root1->left->left->left = getBinaryTreeNode(505);
-    root1->right = getBinaryTreeNode(101);
-    root1->right->right = getBinaryTreeNode(1010);
+    struct binaryTreeNode *root1 = getBinaryTreeNode(1);
+    root1->left = getBinaryTreeNode(2);
+    root1->left->right = getBinaryTreeNode(5);
+    root1->left->left = getBinaryTreeNode(4);
+    root1->left->left->left = getBinaryTreeNode(8);
+
+    root1->right = getBinaryTreeNode(3);
+    root1->right->right = getBinaryTreeNode(7);
+    root1->right->right->right = getBinaryTreeNode(15);
     return root1;
 }
 
