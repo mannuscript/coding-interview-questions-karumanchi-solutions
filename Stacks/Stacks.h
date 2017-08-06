@@ -5,6 +5,7 @@
 
 using namespace std;
 
+
 class LLStack {
     protected:
         struct node* head;
