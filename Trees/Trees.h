@@ -41,6 +41,19 @@ void inorder_print(struct binaryTreeNode* root)
     }
 }
 
+void mirrorTree(struct binaryTreeNode* root)
+{
+    if(!root)
+        return;
+    mirrorTree(root->left);
+    mirrorTree(root->right);
+    //Swap child nodes
+    struct binaryTreeNode* temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+    return;
+}
+
 struct binaryTreeNode* getASampleTree() {
     struct binaryTreeNode *root1 = getBinaryTreeNode(1);
     root1->left = getBinaryTreeNode(2);
