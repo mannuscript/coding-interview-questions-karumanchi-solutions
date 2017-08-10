@@ -168,3 +168,17 @@ struct naryTreeNode* getASampleGerericTree() {
     root->child->nextSibling->child->nextSibling = getANaryTreeNode(122);
     return root;
 }
+
+int getNumberOfChildren(struct naryTreeNode* root)
+{
+    if(!root)
+        return 0;
+    int counter = 0;
+    root = root->child;
+
+    while(root) {
+        root = root->nextSibling;
+        counter++;
+    }
+    return counter;
+}
