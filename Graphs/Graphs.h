@@ -226,10 +226,10 @@ Graph getASampleGraph()
 
     
     Graph G(8);
-    G.addEdge(0,1);
+    G.addEdge(0,1,5);
     G.addEdge(0,5);
 
-    G.addEdge(1,0);
+    G.addEdge(1,0,5);
     G.addEdge(1,5);
     
     G.addEdge(2,3);
