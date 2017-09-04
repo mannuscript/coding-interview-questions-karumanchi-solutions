@@ -7,11 +7,13 @@ using namespace std;
 class Graph {
 public:
     int V;
+    int E;
     vector<int> vertexWeights;
     vector<list<pair<int,int> > > adjList;
     Graph(int V) 
     {
         this->V = V;
+        this->E = 0;
         this->adjList.resize(V);
         this->vertexWeights.resize(V);
     }
@@ -86,6 +88,7 @@ public:
     void addEdge(int from, int to, int weight=1)
     {
         this->adjList[from].push_back(make_pair(to, weight));
+        this->E++;
     }
     
     void setVertexWeight(int node, int weight) 
