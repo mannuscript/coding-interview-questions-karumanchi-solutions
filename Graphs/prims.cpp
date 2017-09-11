@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void prism(Graph G, int source=0)
+void prims(Graph G, int source=0)
 {
     vector<int> covered(G.V);
     vector<int> distanceVector(G.V);
@@ -63,6 +63,6 @@ void prism(Graph G, int source=0)
 int main(void)
 {
     Graph G = getASampleGraph();
-    prism(G);
+    prims(G);
     return 0;
 }
