@@ -23,7 +23,8 @@ struct binaryTreeNode* getBinaryTreeNode(int data)
     newNode->right = NULL;
     return newNode;
 }
-struct binaryTreeNode* getASampleTree() {
+struct binaryTreeNode* getASampleTree() 
+{
     struct binaryTreeNode *root1 = getBinaryTreeNode(1);
     root1->left = getBinaryTreeNode(2);
     root1->left->right = getBinaryTreeNode(5);
@@ -35,6 +36,32 @@ struct binaryTreeNode* getASampleTree() {
     root1->right->left = getBinaryTreeNode(300);
     root1->right->right = getBinaryTreeNode(7);
     root1->right->right->right = getBinaryTreeNode(15);
+    return root1;
+}
+
+/*
+ *  Returns:
+ *                      10 (Root)
+ *              /                 \
+ *            2                   300
+ *          /    \               /     \   
+ *        1       5             30      700
+ *       /       /                         \
+ *     -8       4                          1500 
+ */
+struct binaryTreeNode* getASampleBST() 
+{
+    struct binaryTreeNode *root1 = getBinaryTreeNode(10);
+    root1->left = getBinaryTreeNode(2);
+    root1->left->right = getBinaryTreeNode(5);
+    root1->left->right->left = getBinaryTreeNode(4);
+    root1->left->left = getBinaryTreeNode(1);
+    root1->left->left->left = getBinaryTreeNode(-8);
+
+    root1->right = getBinaryTreeNode(300);
+    root1->right->left = getBinaryTreeNode(30);
+    root1->right->right = getBinaryTreeNode(700);
+    root1->right->right->right = getBinaryTreeNode(1500);
     return root1;
 }
 
